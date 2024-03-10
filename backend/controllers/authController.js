@@ -70,19 +70,19 @@ const refresh = (req, res) => {
     asyncHandler(async (err, decoded) => {
       if (err) return res.status(403).json({ message: "Forbidden" });
 
-      const foundUser = await User.findOne({ username: decoded.username });
+      const foundUser = await User.findOne({ username: decoded.username }).exec();
 
       if (!foundUser) return res.status(401).json({ message: "Unauthorized" });
 
       const accessToken = jwt.sign(
         {
-          UserInfo: {
-            username: foundUser.username,
-            roles: foundUser.roles,
-          },
+          "UserInfo": {
+            "username": foundUser.username,
+            "roles": foundUser.roles,
+          }
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "30s" }
+        { expiresIn: "15min" }
       );
 
       res.json({ accessToken });
@@ -105,5 +105,5 @@ const logout = (req, res) => {
 module.exports = {
   login,
   refresh,
-  logout,
+  logout
 };
