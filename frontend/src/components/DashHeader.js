@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, Link, useLocation } from "react-router-dom";
@@ -10,25 +9,27 @@ const NOTES_REGEX = /^\/dash\/notes(\/)?$/;
 const USERS_REGEX = /^\/dash\/users(\/)?$/;
 
 const DashHeader = () => {
-  const navigate = useNavigate()
-  const { pathname } = useLocation()
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
-  const [sendLogout, { 
-    isLoading, 
-    isSuccess, 
-    isError, 
-    error 
-  }] = useSendLogoutMutation()
-    
-  console.log(isSuccess)
+  const [sendLogout, { isLoading, isError, error }] =
+    useSendLogoutMutation();
 
-  useEffect(() => {
-    if (isSuccess) navigate("/")
-  }, [isSuccess, navigate])
+  //console.log(isSuccess)
+  //console.log(isError)
 
-  if (isLoading) return <p>Logging Out...</p>
+  const logoutHandler = async () => {
+    try {
+      await sendLogout({}).unwrap();
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  if (isError) return <p>Error: {error.message}</p>
+  if (isLoading) return <p>Logging Out...</p>;
+
+  if (isError) return <p>Error: {error.message}</p>;
 
   let dashClass = null;
   if (
@@ -40,7 +41,7 @@ const DashHeader = () => {
   }
 
   const logoutButton = (
-    <button className="icon-button" title="Logout" onClick={sendLogout}>
+    <button className="icon-button" title="Logout" onClick={logoutHandler}>
       <FontAwesomeIcon icon={faRightFromBracket} />
     </button>
   );

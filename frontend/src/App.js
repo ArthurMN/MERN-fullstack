@@ -18,7 +18,9 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Public />} />
         <Route path="login" element={<Login />} />
+
         <Route element={<Prefetch />}>
+          
           <Route path="dash" element={<DashLayout />}>
             <Route index element={<Welcome />} />
 
@@ -33,6 +35,7 @@ function App() {
               <Route path=":id" element={<EditNote />} />
               <Route path="new" element={<NewNote />} />
             </Route>
+
           </Route>
           {/*End dash */}
         </Route>
