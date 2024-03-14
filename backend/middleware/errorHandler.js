@@ -10,7 +10,7 @@ const errorHandler = (err, request, response, next) => {
   const status = response.statusCode ? response.statusCode : 500; // server error
 
   response.status(status);
-  response.json({ message: err.message });
+  response.json({ message: err.message, isError: true });
 };
 
 module.exports = errorHandler;

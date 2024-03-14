@@ -6,7 +6,7 @@ import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import useAuth from "../../hooks/useAuth";
 
 const EditNoteForm = ({ note, users }) => {
-  const {isManager, isAdmin} = useAuth();
+  const { isManager, isAdmin } = useAuth();
 
   const [updateNote, { isLoading, isSuccess, isError, error }] =
     useUpdateNoteMutation();

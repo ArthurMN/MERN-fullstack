@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
 * {
   margin: 0;
@@ -10,9 +10,9 @@
 
 :root {
   /* COLORS */
-  --BGCOLOR: #0F172A;
-  --BORDER-COLOR: #FFF;
-  --COLOR: #FFF;
+  --BGCOLOR: #0f172a;
+  --BORDER-COLOR: #fff;
+  --COLOR: #fff;
   --ERROR: firebrick;
   --INACTIVE: lightgray;
   --LINK-COLOR: whitesmoke;
@@ -20,7 +20,7 @@
   --NOTE-BGCOLOR: hsla(240, 64%, 27%, 0.65);
   --STATUS-COMPLETE: limegreen;
   --STATUS-OPEN: firebrick;
-  --TABLE-BGCOLOR: #FFF;
+  --TABLE-BGCOLOR: #fff;
   --TABLE-COLOR: #000;
 }
 
@@ -65,11 +65,11 @@
 /* || GENERAL STYLES */
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   min-height: 100vh;
   background-color: var(--BGCOLOR);
   color: var(--COLOR);
-  background-image: url('./img/background.jpg');
+  background-image: url("./img/background.jpg");
   background-size: cover;
   background-position: top right;
   background-blend-mode: multiply;
@@ -130,7 +130,7 @@ a:focus-visible {
 }
 
 .welcome a::before {
-  content: "➜ "
+  content: "➜ ";
 }
 
 /* || DASH HEADER, CONTAINER & FOOTER */
@@ -182,7 +182,6 @@ a:focus-visible {
   width: auto;
   height: auto;
 }
-
 
 /* || TABLES - GENERAL */
 
@@ -250,7 +249,6 @@ tr {
   color: var(--STATUS-COMPLETE);
 }
 
-
 /* || FORM - GENERAL */
 
 .form {
@@ -294,7 +292,6 @@ tr {
   border: 1px solid red;
   outline: 1px solid red;
 }
-
 
 .form__checkbox {
   width: 24px;
@@ -342,7 +339,6 @@ tr {
 }
 
 @media screen and (min-width: 768px) {
-
   body {
     font-size: 1.25rem;
   }
@@ -366,7 +362,7 @@ tr {
   .note__created,
   .note__updated,
   .note__username {
-    display: block
+    display: block;
   }
 
   .form__action-buttons {
