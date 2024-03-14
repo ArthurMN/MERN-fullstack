@@ -30,22 +30,22 @@ const getAllNotes = asyncHandler(async (request, response) => {
 // @route POST /notes
 // @access Private
 const createNewNote = asyncHandler(async (request, response) => {
-  const { user, tittle, text } = request.body;
+  const { user, title, text } = request.body;
 
   //Confirm data
-  if (!user || !tittle || !text) {
+  if (!user || !title || !text) {
     return response.status(400).json({ message: "All fields are required" });
   }
 
-  //Check for duplicate tittle
-  const duplicate = await Note.findOne({ tittle }).lean().exec();
+  //Check for duplicate title
+  const duplicate = await Note.findOne({ title }).lean().exec();
 
   if (duplicate) {
     return response.status(409).json({ message: "Duplicate note title" });
   }
 
   //Create and store new note
-  const note = await Note.create({ user, tittle, text });
+  const note = await Note.create({ user, title, text });
 
   if (note) {
     response.status(201).json({ message: "New note created" });
@@ -58,10 +58,10 @@ const createNewNote = asyncHandler(async (request, response) => {
 // @route PATCH /notes
 // @access Private
 const updateNote = asyncHandler(async (request, response) => {
-  const { id, user, tittle, text, completed } = request.body;
+  const { id, user, title, text, completed } = request.body;
 
   //Confirm data
-  if (!id || !tittle || !text || !user || typeof completed !== "boolean") {
+  if (!id || !title || !text || !user || typeof completed !== "boolean") {
     return response.status(400).json({ message: "All fields are required" });
   }
 
@@ -73,7 +73,7 @@ const updateNote = asyncHandler(async (request, response) => {
   }
 
   // Check for duplicate title
-  const duplicate = await Note.findOne({ tittle }).lean().exec();
+  const duplicate = await Note.findOne({ title }).lean().exec();
 
   // Allow renaming of the original note
   if (duplicate && duplicate?._id.toString() !== id) {
@@ -81,13 +81,13 @@ const updateNote = asyncHandler(async (request, response) => {
   }
 
   note.user = user;
-  note.tittle = tittle;
+  note.title = title;
   note.text = text;
   note.completed = completed;
 
   const updatedNote = await note.save();
 
-  response.json({ message: `${updatedNote.tittle} updated` });
+  response.json({ message: `${updatedNote.title} updated` });
 });
 
 // @desc Delete a note
@@ -111,7 +111,7 @@ const deleteNote = asyncHandler(async (request, response) => {
   //delete note
   const result = note;
   await note.deleteOne();
-  const reply = `Note ${result.tittle} with ID ${result._id} deleted`;
+  const reply = `Note ${result.title} with ID ${result._id} deleted`;
   response.json(reply);
 });
 

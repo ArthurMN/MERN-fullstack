@@ -11,7 +11,7 @@ const noteSchema = new mongoose.Schema(
       required: true,
       ref: "User",
     },
-    tittle: {
+    title: {
       type: String,
       required: true,
     },
