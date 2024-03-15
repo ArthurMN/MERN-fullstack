@@ -2,4 +2,4 @@
 The project was deployed with onrender, and can be vizualized at [Technotes](https://mern-study.onrender.com/)\
 To login and use the functionalitys use:\
 username: admin\
-password: admin\
+password: admin
